@@ -46,7 +46,7 @@ public static double max_err_normal(double a, double b){
 	}
 	return (Math.pow( (b - a) , 3) / (12*N*N));
 }
-// checks if the probability goes absurd, i.e., the divisions are not large as compared to the interval 
+// checks if the probability goes absurd, i.e., the divisions are not large as compared to the interval. Hence, the probability + maximum possible error may go above 1
 public static boolean absurd(double a, double b){
 	if( (integrate_normal(a,b) + max_err_normal(a,b)) > 1 )
 		return true;
@@ -57,8 +57,8 @@ public static void main(String args[]){
 	Scanner sc = new Scanner(System.in);
 	System.out.println("Input the interval");
 	double a = sc.nextDouble(); // lower limit of the integral
-	if(a<0.0) // probability distribution function is 0 for negative numbers
-		a=0.0;
+	if(a < 0.0) // probability distribution function is 0 for negative numbers
+		a = 0.0;
 	double b = sc.nextDouble(); // upper limit of the integral
 	System.out.println("Enter number of divisions (N) for running the trapezoid rule (default 100000) ");
 	N = sc.nextDouble(); // modified value of N according to the user
@@ -68,7 +68,7 @@ public static void main(String args[]){
 		System.out.println("Interval invalid");
 	else
 	{
-		System.out.println("Probability = " + integrate_normal(a , b));
+		System.out.println("Probability = " + integrate_normal(a,b));
 		System.out.println("Maximum error = " + max_err_normal(a,b));
 	}
 }
